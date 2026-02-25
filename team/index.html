@@ -14,10 +14,10 @@
 <meta content="Meet the Team — Haymakers Commercial Real Estate" property="og:title"/>
 <meta content="https://www.haymakersre.com/team" property="og:url"/>
 <meta content="website" property="og:type"/>
-<meta content="Meet the Team — Haymakers Commercial Real Estate" itemprop="name">
-<meta content="https://www.haymakersre.com/team" itemprop="url">
-<meta content="Meet the Team — Haymakers Commercial Real Estate" name="twitter:title"/>
-<meta content="https://www.haymakersre.com/team" name="twitter:url"/>
+<meta content="Meet the Team — Haymakers Commercial Real Estate" itemprop="name"/>
+<meta content="https://www.haymakersre.com/team" itemprop="url"/>
+<meta content="Meet the Team — Haymakers Commercial Real Estate" name="twitter:title">
+<meta content="https://www.haymakersre.com/team" name="twitter:url">
 <meta content="summary" name="twitter:card"/>
 <meta content="" name="description"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -36,7 +36,15 @@
 <!-- End of Squarespace Headers -->
 <link href="../static/vta/5c5a519771c10ba3470d8101/versioned-assets/1771441478242-2KJ6E4XSE8IDDFKSAHZS/static.css" rel="stylesheet" type="text/css"/>
 </meta></meta><link href="../components/css/website.components.form.styles.css" rel="stylesheet" type="text/css"/><link href="../components/css/website.components.html.styles.css" rel="stylesheet" type="text/css"/><style id="site-fixes">
-/* === Image Fixes === */
+/* === Image Container Fixes === */
+
+/* The key fix: fluid image containers need explicit height via padding-bottom */
+.fluid-image-container {
+    position: relative !important;
+    overflow: hidden !important;
+    width: 100% !important;
+}
+
 .content-fill {
     position: absolute !important;
     top: 0 !important;
@@ -44,63 +52,67 @@
     width: 100% !important;
     height: 100% !important;
 }
+
 .content-fill img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: 50% 50% !important;
-    display: block !important;
-}
-.fluid-image-container {
-    position: relative !important;
-    overflow: hidden !important;
-    width: 100% !important;
-}
-.fluid-image-container img {
-    display: block !important;
-}
-.fluid-image-component-root {
-    position: relative;
-}
-/* Set aspect ratio using padding-bottom trick for containers without explicit height */
-.sqs-block-image .fluid-image-container {
-    padding-bottom: 0 !important;
-    height: auto !important;
-}
-.sqs-block-image .content-fill {
-    position: relative !important;
-}
-.sqs-block-image .content-fill img {
-    width: 100% !important;
-    height: auto !important;
-    display: block !important;
-}
-
-/* For stretched/hero images */
-[data-is-image-stretched="true"] .fluid-image-container {
-    position: relative;
-}
-[data-is-image-stretched="true"] .content-fill {
     position: absolute !important;
-    top: 0; left: 0; width: 100%; height: 100%;
-}
-[data-is-image-stretched="true"] .content-fill img {
-    object-fit: cover !important;
+    top: 0 !important;
+    left: 0 !important;
     width: 100% !important;
     height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
 }
 
-/* Fix overlay */
 .fluidImageOverlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     pointer-events: none;
 }
 
-/* Ensure srcset images display */
-img[srcset] {
+/* Ensure all img tags are visible */
+img {
     max-width: 100%;
-    height: auto;
+}
+
+img[data-src] {
+    opacity: 1 !important;
+}
+
+/* Blog/resource grid images */
+.blog-basic-grid .image-wrapper {
+    display: block;
+    overflow: hidden;
+}
+
+.blog-basic-grid .image-wrapper img {
+    display: block;
+    width: 100%;
+}
+
+/* Team page images */
+.sqs-block-summary-v2 img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* Section backgrounds */
+.page-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.section-background {
+    position: absolute !important;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0;
+}
+
+.section-background img {
+    position: absolute !important;
+    top: 0 !important; left: 0 !important;
+    width: 100% !important; height: 100% !important;
+    object-fit: cover !important;
 }
 
 /* === Accordion Fixes === */
@@ -2266,15 +2278,16 @@ img[srcset] {
 <script defer="true" src="../static/vta/5c5a519771c10ba3470d8101/scripts/site-bundle.ffb22c3e841b638295ea13d0eb1a9f48.js" type="text/javascript"></script>
 <script defer="" src="../components/js/website.components.form.visitor.js"></script><script defer="" src="../components/js/website.components.html.visitor.js"></script><script id="site-fixes-js">
 document.addEventListener('DOMContentLoaded', function() {
-    // === Fix lazy images ===
+    // Fix lazy images
     document.querySelectorAll('img[data-src]').forEach(function(img) {
-        if (!img.src || img.src === '' || img.src.indexOf('data:') === 0) {
-            img.src = img.getAttribute('data-src');
+        var dataSrc = img.getAttribute('data-src');
+        if (dataSrc && (!img.src || img.src === '' || img.src.indexOf('data:') === 0)) {
+            img.src = dataSrc;
         }
         img.style.opacity = '1';
     });
 
-    // === Fix accordion ===
+    // Accordion functionality
     document.querySelectorAll('.accordion-item__click-target').forEach(function(btn) {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -2301,7 +2314,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Expand first item if configured
+    // Expand first accordion item if configured
     document.querySelectorAll('.accordion-items-container').forEach(function(c) {
         if (c.getAttribute('data-is-expanded-first-item') === 'true') {
             var first = c.querySelector('.accordion-item');
@@ -2313,7 +2326,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // === Mobile nav toggle ===
+    // Mobile hamburger toggle
     var hamburger = document.querySelector('.header-burger-btn');
     if (hamburger) {
         hamburger.addEventListener('click', function() {
