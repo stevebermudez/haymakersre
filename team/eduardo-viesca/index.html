@@ -343,6 +343,34 @@ img {
     object-fit: cover !important;
 }
 
+
+/* === Static Form Styles === */
+.sqs-form-static {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.sqs-form-static .form-item label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.sqs-form-static .form-item .required {
+    color: red;
+}
+.sqs-form-static .field-element {
+    box-sizing: border-box;
+}
+.sqs-form-static .field-element:focus {
+    outline: none;
+    border-color: #000 !important;
+}
+.sqs-form-static .form-button-wrapper {
+    margin-top: 8px;
+}
+
 /* === Mobile Responsive Safety === */
 @media (max-width: 767px) {
     /* Ensure images don't overflow on mobile */

@@ -342,6 +342,34 @@ img {
     object-fit: cover !important;
 }
 
+
+/* === Static Form Styles === */
+.sqs-form-static {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.sqs-form-static .form-item label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.sqs-form-static .form-item .required {
+    color: red;
+}
+.sqs-form-static .field-element {
+    box-sizing: border-box;
+}
+.sqs-form-static .field-element:focus {
+    outline: none;
+    border-color: #000 !important;
+}
+.sqs-form-static .form-button-wrapper {
+    margin-top: 8px;
+}
+
 /* === Mobile Responsive Safety === */
 @media (max-width: 767px) {
     /* Ensure images don't overflow on mobile */
@@ -2593,6 +2621,30 @@ img {
   </script>
 <div class="sqs-form-block-submission-html" data-submission-html="" id="form-submission-html-679125dbd2ee757637e9b8da"></div><style></style>
 <div class="form-wrapper">
+<form class="sqs-form-static" action="https://www.haymakersre.com" method="POST" data-form-id="679125dbd2ee757637e9b8da">
+  <div class="form-item field-name">
+    <label for="name-yui_3_17_2_1_1733844208615_1051">Name <span class="required">*</span></label>
+    <div class="form-name-fields" style="display:flex;gap:10px;">
+      <input type="text" id="name-yui_3_17_2_1_1733844208615_1051-fname" name="fname" placeholder="First Name" class="field-element" required style="flex:1;padding:12px;border:1px solid var(--sqs-border-color);font-family:inherit;font-size:inherit;"/>
+      <input type="text" id="name-yui_3_17_2_1_1733844208615_1051-lname" name="lname" placeholder="Last Name" class="field-element" required style="flex:1;padding:12px;border:1px solid var(--sqs-border-color);font-family:inherit;font-size:inherit;"/>
+    </div>
+  </div>
+  <div class="form-item field-email">
+    <label for="email-yui_3_17_2_1_1733844411045_5358">Email <span class="required">*</span></label>
+    <input type="email" id="email-yui_3_17_2_1_1733844411045_5358" name="email" placeholder="Email" class="field-element" required style="width:100%;padding:12px;border:1px solid var(--sqs-border-color);font-family:inherit;font-size:inherit;"/>
+  </div>
+  <div class="form-item field-phone">
+    <label for="phone-0d838213-9299-4183-90d1-bba2a929bcd6">Phone</label>
+    <input type="tel" id="phone-0d838213-9299-4183-90d1-bba2a929bcd6" name="phone" placeholder="Phone" class="field-element" style="width:100%;padding:12px;border:1px solid var(--sqs-border-color);font-family:inherit;font-size:inherit;"/>
+  </div>
+  <div class="form-item field-textarea">
+    <label for="textarea-yui_3_17_2_1_1733844411045_5360">Message <span class="required">*</span></label>
+    <textarea id="textarea-yui_3_17_2_1_1733844411045_5360" name="message" placeholder="Message" class="field-element" rows="5" required style="width:100%;padding:12px;border:1px solid var(--sqs-border-color);font-family:inherit;font-size:inherit;resize:vertical;"></textarea>
+  </div>
+  <div class="form-button-wrapper">
+    <button type="submit" class="sqs-block-button-element--small sqs-button-element--primary" style="width:100%;padding:15px 30px;background:var(--primaryButtonBackgroundColor, #000);color:var(--primaryButtonTextColor, #fff);border:none;cursor:pointer;font-family:inherit;font-size:inherit;letter-spacing:0.1em;">Submit</button>
+  </div>
+</form>
 </div>
 </div></div></div></div></div></div>
 </div>
