@@ -156,6 +156,14 @@ img {
     box-sizing: border-box;
 }
 
+/* === Mobile hero: let the hero image cover the full section grid (as it
+   does on desktop) so the oversized headline can't leave an empty gap === */
+@media (max-width: 767px) {
+  [data-section-id="679125dbd2ee757637e9b8e4"] .fe-block-24524eed1b14e8cbce33 {
+    grid-area: 1 / 1 / -1 / -1 !important;
+  }
+}
+
 /* Ensure text blocks sit above image blocks in overlapping grid areas */
 .fe-block .sqs-block-html,
 .fe-block .sqs-block-button {
